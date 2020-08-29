@@ -169,77 +169,14 @@
                             </div>
                             <p>BTD5 recieved a small update on August 20th, bringing with it a new map called Parking Lot. While NKHook5 is made to auto-update every time BTD5 updates, there were a few things that didn't update correctly. Mallis, the creator of NKHook5, fixed those issues and released this latest version.</p>
                             <p>
-                                <a href="#" data-toggle="modal" data-target="#post" data-title="PHP/PDO Functions" data-post="&lt;p&gt;Writing safe and robust SQL queries with PDO is already pretty easy; you just need to prepare statements with placeholders and then execute those statements. However, the process can be streamlined a bit by packing the procedures into a function. In the code block below, I first connect to an example database, then create the function called &lt;code&gt;sql&lt;/code&gt;, which takes three arguments: the database connection (&lt;code&gt;$db&lt;/code&gt;), the SQL query (&lt;code&gt;$q&lt;/code&gt;), and the values of the placeholders (&lt;code&gt;$params&lt;/code&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
-// Configs
-define(&quot;HOST&quot;, &quot;localhost&quot;);
-define(&quot;USER&quot;, &quot;username&quot;);
-define(&quot;PASS&quot;, &quot;password&quot;);
-define(&quot;NAME&quot;, &quot;database&quot;);
-
-// Connect to database
-try {
-  $db = new PDO(&quot;mysql:host=&quot;.HOST.&quot;;dbname=&quot;.NAME.&quot;;charset=utf8&quot;, &quot;&quot;.USER.&quot;&quot;, &quot;&quot;.PASS.&quot;&quot;);
-  $db-&amp;gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  // PDO fetch docs: http://php.net/manual/en/pdostatement.fetch.php
-  $db-&amp;gt;setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-  echo $e-&amp;gt;getMessage();
-}
-
-// Simple function to handle PDO prepared statements
-function sql($db, $q, $params, $return) {
-  // Prepare statement
-  $stmt = $db-&amp;gt;prepare($q);
-  // Execute statement
-  $stmt-&amp;gt;execute($params);
-  // Decide whether to return the rows themselves, or just count the rows
-  if ($return == &quot;rows&quot;) {
-    return $stmt-&amp;gt;fetchAll();
-  }
-  elseif ($return == &quot;count&quot;) {
-    return $stmt-&amp;gt;rowCount();
-  }
-}
-?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;The usage of the function would look something like this&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
-// With SELECT
-// Call function
-$rows = sql($db, &quot;SELECT * FROM table WHERE id = ?&quot;, array($id), &quot;rows&quot;);
-// Get results
-foreach($rows as $row) {
-    echo $row['field1'].' '.$row['field2']; //etc...
-}
-
-// With INSERT
-// Call function
-sql($db, &quot;INSERT INTO table (field1, field2, field3) VALUES (?, ?, ?)&quot;, array($id, $name, $pass));
-
-// With UPDATE
-// Call function
-sql($db, &quot;UPDATE table SET name = ? WHERE id = ?&quot;, array($name, $id));
-
-// With DELETE
-// Call function
-sql($db, &quot;DELETE FROM table WHERE id = ?&quot;, array($id));
-?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;Arguably, such a function has little use as it's so simple, but if your web application is littered with SQL queries, using this function might reduce code duplication and improve readability.&lt;/p&gt;">Read more →</a>
+                                There are several exciting features being developed, stay tuned for more info.
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="post">
                             <div class="page-header">
-                                <h2 class="h3">PHP Mail Function</h2>
+                                <h2 class="h3">NKHook5 pre-release 2 is out now</h2>
                                 <p class="text-muted">July 1<sup>st</sup>, 2015</p>
                             </div>
                             <p>
