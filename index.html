@@ -116,17 +116,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="inner">
-                                <h3 class="masthead-brand"><img src="http://timothy.expert/images/logo.svg?v=1" alt="Code" class="img-responsive logo"> Timothy.Expert</h3>
+                                <h3 class="masthead-brand"><img src="wrench.png" alt="Logo" class="img-responsive logo"> TD Toolbox</h3>
                                 <nav>
                                     <ul class="nav masthead-nav">
                                         <li><a href="index" data-hide="#blog">Home</a></li>
-                                        <li class="active"><a href="#" data-hide="#blog">Blog</a></li>
+                                        <li class="active"><a href="#" data-hide="#blog">News</a></li>
                                         <li><a href="projects" data-hide="#blog">Projects</a></li>
-                                        <li><a href="contact" data-hide="#blog">Contact</a></li>
+                                        <li><a href="https://discord.gg/jj5Q7mA" data-hide=".cover-wrapper">Contact us</a></li>
                                     </ul>
                                 </nav>
                             </div>
-                            <h1 class="text-center">Blog</h1>
+                            <h1 class="text-center">News</h1>
                         </div>
                     </div>
                 </div>
@@ -136,94 +136,14 @@
                     <div class="col-md-4">
                         <div class="post">
                             <div class="page-header">
-                                <h2 class="h3">Creating a Search Engine with PHP, PDO, and MySQL</h2>
-                                <p class="text-muted">August 23<sup>rd</sup>, 2015</p>
+                                <h2 class="h3">BTD6 Mod Support Added to TD Loader!</h2>
+                                <p class="text-muted">August 30<sup>th</sup>, 2020</p>
                             </div>
                             <p>
-                                The Problem
-
-                                Search engines are a fundemental component to many web applications as they allow users to quickly and painlessly traverse the countless rows in large databases. The idea itself is simple enough, however, creating even a simple search engine can be challenging; because users will rarely type a query that exactly corresponds to a record in the database, a method of returning all releva…
+                                Since BTD6 mod api was just released, we decided to add support for BTD6 to TD Loader. You can now manage all of your BTD6 mods just like you could before with the other games.
                             </p>
                             <p>
-                                <a href="#" data-toggle="modal" data-target="#post" data-title="Creating a Search Engine with PHP, PDO, and MySQL" data-post="&lt;h2&gt;The Problem&lt;/h2&gt;
-
-&lt;p&gt;Search engines are a fundemental component to many web applications as they allow users to quickly and painlessly traverse the countless rows in large databases. The idea itself is simple enough, however, creating even a simple search engine can be challenging; because users will rarely type a query that exactly corresponds to a record in the database, a method of returning all relevant queries — not just those that are an exact match — is necessary. But how can such a thing be accomplished? SQL is a precise language which demands input that corresponds exactly with a record in the database. You can only request records where a columns value equals &lt;em&gt;X&lt;/em&gt;, not where a columns value would be relevant to &lt;em&gt;X&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h2&gt;The Solution?&lt;/h2&gt;
-
-&lt;p&gt;The most fluidity SQL allows in queries is the use of wildcards (&lt;code&gt;%&lt;/code&gt;), which match anything in the database. For a search engine, this is especially useful as a user does not have to know all the information to get results. For example, if a user wanted to search through a list of employees by name, they would normally need the entire employees name to have results returned to them. Consider the following SQL&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;SELECT name, street_address, phone FROM employees WHERE name = '$users_input'
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;In this basic example (which for simplicity ignores the obvious risk of SQL injection), the aferomentioned problem arises — an employees information can only be retrieved if a user enters in the &lt;strong&gt;exact&lt;/strong&gt; name of an employee. Searching for &quot;Tim&quot; when an employees name in the database is &quot;Tim Fitzgerald&quot; would return nothing. With wildcards, however, a user can enter in an employees first name, or simply any part of their name and get results. Consider the following query&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;SELECT name, street_address, phone FROM employees WHERE name LIKE '%$users_input%'
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;Notice the wildcards wrapped around the users input. As the wildcards will match any text, searching for an employee named &quot;Tim Fitzgerald&quot; with the query &quot;Tim&quot; would correctly return a result as &quot;Tim&quot; matches part of &quot;Tim Fitzgerald,&quot; and the wildcard matches everything else. Additionally, the &lt;code&gt;LIKE&lt;/code&gt; operator is used instead of &lt;code&gt;=&lt;/code&gt;, as wildcards are incompatible with &lt;code&gt;=&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4&gt;Search engine using wildcards&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
-// Users search terms is saved in $_POST['q']
-$q = $_POST['q'];
-// Prepare statement
-$search = $db-&amp;gt;prepare(&quot;SELECT `id`, `name` FROM `users` WHERE `name` LIKE ?&quot;);
-// Execute with wildcards
-$search-&amp;gt;execute(array(&quot;%$q%&quot;));
-// Echo results
-foreach($search as $s) {
-  echo $s['name'];
-}
-?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;Still, the above code is rather limited. I used this method of searching databases for a while, and while it works adequately with efficiently fetching results that are close to but don't exactly match the users query, it still doesn't return all relevant results; the user's query still has to have an exact match to something in the database. For example, if I had a database with the name &quot;Tim&quot; as a row, searching for &quot;Timothy&quot; wouldn't work. Wildcards help retrieve records that partly match a users query, but do not help with retrieving records that may actually be relevant.&lt;/p&gt;
-
-&lt;h2&gt;An Alternative Solution&lt;/h2&gt;
-
-&lt;p&gt;SQL has reached the limits of what it can accomplish, so the only viable solution is to use PHP to filter results. The drawback of this solution, however, is that all rows in a database are needed to be retrieved &lt;em&gt;and then&lt;/em&gt; sorted, which creates an unnecessarily large SQL query, not to mention the high computational cost of the functions used to then sort out the irrelevant results. Nevertheless, it appears to be the only way solution to providing more relevant results. Two functions in PHP that are especially handing in this situation are &lt;a rel=&quot;nofollow&quot; href=&quot;http://php.net/manual/en/function.levenshtein.php&quot;&gt;&lt;code&gt;levenshtein()&lt;/code&gt;&lt;/a&gt;, which calculates the Levenshtein distance (or the &quot;minimal number of characters you have to replace, insert or delete to transform&quot; one string into another), and &lt;a rel=&quot;nofollow&quot; href=&quot;http://php.net/manual/en/function.metaphone.php&quot;&gt;&lt;code&gt;metaphone()&lt;/code&gt;&lt;/a&gt;, which calculates the metaphone key of a string (or simply the phonetic distance between two strings). By first calculating the phonetic keys of the users search query and database records, poor spelling does not render the search engine useless (&quot;carrrot&quot; and &quot;carrot&quot; have the same phonetic keys), and the levenshtein distance between phonetic keys can determine how closely a users search has to be to records in the database.&lt;/p&gt;
-
-&lt;h4&gt;Search engine using the Levenshtein distance&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
-// Users search terms is saved in $_POST['q']
-$q = $_POST['q'];
-// Create array for the names that are close to or match the search term
-$results = array();
-foreach($db-&amp;gt;query('SELECT `id`, `name` FROM `employees`') as $name) {
-  // Keep only relevant results
-  // First takes the phonetic keys from each word, and compares the difference between them
-  // If more than 3 charachters need to be added, deleted, or replaced, the word is thrown out
-  // To get broader results, change the 3 to a higher number (and vice versa — for narrower results use a number below 3)
-  if (levenshtein(metaphone($q), metaphone($name['name'])) &amp;lt; 3) {
-    array_push($results,$name['name']);
-  }
-}
-// Echo out results
-foreach ($results as $result) {
-  echo $result.&quot;\n&quot;;
-}
-?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;To raise or lower the threshold of what is deemed relevant, change the minimium levenshtein distance to a different number. Higher numbers would include broader results (because the distance between two strings can be greater) while lower numbers would narrow search results including only close matches. The threshold you pick should align with how big your database is; larger databases should have more precise searches, while smaller ones can have more vague searches.&lt;/p&gt;
-
-&lt;p&gt;Admittedly, this search engine is not very robust, and the second method is very computationally expensive. The limit of what SQL/server side code can accomplish has been reached and a more robust search engine would require a completely &lt;a rel=&quot;nofollow&quot; href=&quot;https://lucene.apache.org&quot;&gt;different approach&lt;/a&gt;. Both methods do work, however, and for simple search engines more robust solutions may be like trying to swat a fly with a sledgehammer; if the requirement is that you query a database using non-exact user input, the methods above work well.&lt;/p&gt;
-
-&lt;h2&gt;TL;DR?&lt;/h2&gt;
-
-&lt;p&gt;Take a look at the code for&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a rel=&quot;nofollow&quot; href=&quot;#search-engine-using-wildcards&quot;&gt;Search engine using wildcards&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a rel=&quot;nofollow&quot; href=&quot;#search-engine-using-the-levenshtein-distance&quot;&gt;Search engine using the Levenshtein distance&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;">Read more →</a>
+                                
                             </p>
                         </div>
                     </div>
