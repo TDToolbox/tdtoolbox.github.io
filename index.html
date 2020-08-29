@@ -136,82 +136,38 @@
                     <div class="col-md-4">
                         <div class="post">
                             <div class="page-header">
-                                <h2 class="h3">BTD6 Mod Support Added to TD Loader!</h2>
-                                <p class="text-muted">August 30<sup>th</sup>, 2020</p>
+                                <h2 class="h3">BTD6 Mod Support Added to TD Loader</h2>
+                                <p class="text-muted">August 31<sup>st</sup>, 2020</p>
                             </div>
                             <p>
                                 Since BTD6 mod api was just released, we decided to add support for BTD6 to TD Loader. You can now manage all of your BTD6 mods just like you could before with the other games.
                             </p>
                             <p>
-                                
+                                In addition to this, we've redesigned the UI so it looks cleaner, and we've fixed a lot of the bugs that were reported in the previous version. It should be much more stable now!
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="post">
                             <div class="page-header">
-                                <h2 class="h3">Paginated Content With PHP</h2>
-                                <p class="text-muted">July 13<sup>th</sup>, 2015</p>
+                                <h2 class="h3">BTD6 Mod Api Has Been Released!</h2>
+                                <p class="text-muted">August 30<sup>th</sup>, 2020</p>
                             </div>
                             <p>
-                                You see a lot of front end demos of pagination on CodePen, but that's only half the work in implementing paginated content on a dynamic website. This post is supposed to be the other half.
-
-
-                                If you're looking for pagination, I presume you have a bunch of rows in a MySQL database, and you want to split the content into more managable chunks by pulling down only some of the content. While there are …
+                                A mod making api has been released for BTD6! It is now much easier to make mods for BTD6. Thanks to BowDown097 and Danny Parker for their unwavering commitment to bring this to our community.
                             </p>
                             <p>
-                                <a href="#" data-toggle="modal" data-target="#post" data-title="Paginated Content With PHP" data-post="&lt;blockquote&gt;
-&lt;p&gt;You see a lot of front end demos of pagination on CodePen, but that's only half the work in implementing paginated content on a dynamic website. This post is supposed to be the other half.&lt;/p&gt;
-&lt;/blockquote&gt;
 
-&lt;p&gt;If you're looking for pagination, I presume you have a bunch of rows in a MySQL database, and you want to split the content into more managable chunks by pulling down only some of the content. While there are multiple approaches, my favorite is just to stick the page number in a query string, then pull it down and use it in conjunction with &lt;code&gt;OFFSET&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In this article, I'll assume our URL is &lt;code&gt;example.com?page=1&lt;/code&gt;. If you prefer &lt;code&gt;example.com/1&lt;/code&gt;, there is apparently a way to &lt;a rel=&quot;nofollow&quot; href=&quot;http://stackoverflow.com/a/13003447/2624391&quot;&gt;rewrite the query string as a path using &lt;code&gt;.htaccess&lt;/code&gt;.&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
-// For easier access
-$page = $_GET['page'];
-
-// This 1. Makes sure no one tampered with the query tring by making sure it's a number
-//      2. If someone landed on example.com and the query string doesn't exist, they should be on the first page
-if (empty($page) || is_numeric($page) == FALSE) {
-  $page = 1;
-}
-else {
-  $page = $_GET['page'];
-}
-
-// Number of items per page
-$items = 5;
-// Figure out how much to OFFSET by
-$offset = ($page * $items) - $items;
-
-// That's essentially all there is too it. The only thing left would be to write the SQL
-// It'll probably look something like this:
-$sql = &quot;SELECT * FROM table LIMIT $items OFFSET $offset&quot;;
-
-?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;And that's it. The pagination controls would just be links adding or subtracting a page:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;a href=&quot;www.example.com?page=&amp;lt;?php echo $page + 1; ?&amp;gt;&quot;&amp;gt;Next Page&amp;lt;/a&amp;gt;
-&amp;lt;?php if ($page != 1) { ?&amp;gt;
-&amp;lt;a href=&quot;www.example.com?page=&amp;lt;?php echo $page - 1; ?&amp;gt;&quot;&amp;gt;Previous Page&amp;lt;/a&amp;gt;
-&amp;lt;?php } ?&amp;gt;
-&lt;/code&gt;
-&lt;/pre&gt;">Read more →</a>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="post">
                             <div class="page-header">
-                                <h2 class="h3">PHP/PDO Functions</h2>
-                                <p class="text-muted">July 10<sup>th</sup>, 2015</p>
+                                <h2 class="h3">NKHook5 has been updated to work with latest BTD5</h2>
+                                <p class="text-muted">August 27<sup>th</sup>, 2020</p>
                             </div>
-                            <p>Writing safe and robust SQL queries with PDO is already pretty easy; you just need to prepare statements with placeholders and then execute those statements. However, the process can be streamlined a bit by packing the procedures into a function. In the code block below, I first connect to an example database, then create the function called sql, which takes three arguments: the database connectio…</p>
+                            <p>BTD5 recieved a small update on August 20th, bringing with it a new map called Parking Lot. While NKHook5 is made to auto-update every time BTD5 updates, there were a few things that didn't update correctly. Mallis, the creator of NKHook5, fixed those issues and released this latest version.</p>
                             <p>
                                 <a href="#" data-toggle="modal" data-target="#post" data-title="PHP/PDO Functions" data-post="&lt;p&gt;Writing safe and robust SQL queries with PDO is already pretty easy; you just need to prepare statements with placeholders and then execute those statements. However, the process can be streamlined a bit by packing the procedures into a function. In the code block below, I first connect to an example database, then create the function called &lt;code&gt;sql&lt;/code&gt;, which takes three arguments: the database connection (&lt;code&gt;$db&lt;/code&gt;), the SQL query (&lt;code&gt;$q&lt;/code&gt;), and the values of the placeholders (&lt;code&gt;$params&lt;/code&gt;).&lt;/p&gt;
 
